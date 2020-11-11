@@ -5,9 +5,9 @@
 module.exports = (params) => {
 
     params = {
-      // TODO: set default params
+  // TODO: set default params
 
-      ...params
+  ...params
     };
 
     // Publish and return datasets.
