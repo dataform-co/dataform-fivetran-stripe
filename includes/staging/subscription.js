@@ -3,7 +3,7 @@ module.exports = (params) => {
   return publish(params.stagingTablePrefix + params.tablePrefix + "subscription", {
   ...params.defaultConfig,
   schema: params.stagingSchema,
-  disabled: !params.usingSubscription
+  disabled: !params.usingSubscriptions
   }).query(ctx => `
 
 select
@@ -21,7 +21,7 @@ select
   days_until_due,
   start_date,
   ended_at
-from ${ctx.ref(params.stripeSchema, 'subscription')}
+from ${ctx.ref(params.fivetranStripeSchema, 'subscription')}
 
 `)
 }

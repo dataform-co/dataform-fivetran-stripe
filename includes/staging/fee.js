@@ -12,7 +12,7 @@ select
   currency,
   description,
   type
-from ${ctx.ref(params.stripeSchema, 'fee')}
+from ${ctx.ref(params.fivetranStripeSchema, 'fee')}
 
 `)
 }

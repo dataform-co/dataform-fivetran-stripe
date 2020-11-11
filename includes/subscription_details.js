@@ -4,7 +4,7 @@ module.exports = (params) => {
   ...params.defaultConfig,
   disabled: !(params.usingInvoices && params.usingSubscriptions)
   }).query(ctx => `
-
+with
 line_items_groups as (
 select
   invoice.invoice_id,

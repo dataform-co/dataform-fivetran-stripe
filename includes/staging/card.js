@@ -14,7 +14,7 @@ select
   name,
   recipient,
   funding
-from ${ctx.ref(params.stripeSchema, 'card')}
+from ${ctx.ref(params.fivetranStripeSchema, 'card')}
 
 `)
 }

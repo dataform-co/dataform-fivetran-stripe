@@ -18,7 +18,7 @@ select
   source,
   status,
   type
-from ${ctx.ref(params.stripeSchema, 'balance_transaction')}
+from ${ctx.ref(params.fivetranStripeSchema, 'balance_transaction')}
 
 `)
 }

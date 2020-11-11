@@ -2,7 +2,7 @@ module.exports = (params) => {
 
   return publish(params.tablePrefix + "subscription_line_items", {
   ...params.defaultConfig,
-  enabled=params.usingSubscriptions
+  disabled: !params.usingSubscriptions
   }).query(ctx => `
 
 select 

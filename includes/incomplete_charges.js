@@ -8,7 +8,7 @@ select
   created_at,
   customer_id,
   amount
-from ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'stripe_charge')}
+from ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'charge')}
 where not is_captured
 `)
 }

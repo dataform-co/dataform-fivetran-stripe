@@ -13,7 +13,7 @@ from ${ctx.ref(params.defaultConfig.schema, params.tablePrefix + 'daily_overview
 )
 
 select
-${sql.timestamps.truncate('quarter', sql.asTimestamp('date'))} as quarter,
+${sql.timestamps.truncate(sql.asTimestamp('date'), 'quarter')} as quarter,
   sum(total_sales) as total_sales,
   sum(total_refunds) as total_refunds,
   sum(total_adjustments) as total_adjustments,

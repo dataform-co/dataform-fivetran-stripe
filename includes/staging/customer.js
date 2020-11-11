@@ -4,12 +4,6 @@ module.exports = (params) => {
   ...params.defaultConfig,
   schema: params.stagingSchema,
   }).query(ctx => `
-with customer as (
-
-select *
-from ${ctx.ref(params.stripeSchema, 'customer')}
-
-), fields as (
 
 select 
   id as customer_id,
@@ -28,12 +22,7 @@ select
   shipping_address_state,
   shipping_name,
   shipping_phone
-from customer
-where not is_deleted
+from ${ctx.ref(params.fivetranStripeSchema, 'customer')}
 
-)
-
-select *
-from fields
 `)
 }

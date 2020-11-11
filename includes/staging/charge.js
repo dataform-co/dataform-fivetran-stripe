@@ -26,7 +26,7 @@ select
   refunded as is_refunded,
   status,
   invoice_id
-from ${ctx.ref(params.stripeSchema, 'charge')}
+from ${ctx.ref(params.fivetranStripeSchema, 'charge')}
 
 `)
 }

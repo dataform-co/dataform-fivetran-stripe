@@ -10,7 +10,7 @@ select
   payment_method_id,
   brand,
   funding
-from ${ctx.ref(params.stripeSchema, 'payment_method_card')}
+from ${ctx.ref(params.fivetranStripeSchema, 'payment_method_card')}
 
 `)
 }

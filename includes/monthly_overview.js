@@ -13,7 +13,7 @@ from ${ctx.ref(params.defaultConfig.schema, params.tablePrefix + 'daily_overview
 )
 
 select
-${sql.timestamps.truncate('month', sql.asTimestamp('date'))} as month,
+  ${sql.timestamps.truncate(sql.asTimestamp('date'), 'month')} as month,
   sum(total_sales) as total_sales,
   sum(total_refunds) as total_refunds,
   sum(total_adjustments) as total_adjustments,

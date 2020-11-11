@@ -18,7 +18,7 @@ select
   source_type,
   status,
   type
-from ${ctx.ref(params.stripeSchema, 'payout')}
+from ${ctx.ref(params.fivetranStripeSchema, 'payout')}
 
 `)
 }

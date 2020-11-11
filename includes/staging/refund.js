@@ -16,7 +16,7 @@ select
   reason,
   receipt_number,
   status
-from ${ctx.ref(params.stripeSchema, 'refund')}
+from ${ctx.ref(params.fivetranStripeSchema, 'refund')}
 
 `)
 }

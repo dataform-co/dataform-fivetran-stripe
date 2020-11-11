@@ -20,7 +20,7 @@ select
   subscription_item_id,
   type,
   unique_id
-from ${ctx.ref(params.stripeSchema, 'invoice_line_item')}
+from ${ctx.ref(params.fivetranStripeSchema, 'invoice_line_item')}
 where id not like 'sub%' -- ids starting with 'sub' are temporary and are replaced by permanent ids starting with 'sli' 
 
 `)

@@ -11,7 +11,7 @@ select
   created as created_at,
   customer_id,
   type
-from ${ctx.ref(params.stripeSchema, 'payment_method')}
+from ${ctx.ref(params.fivetranStripeSchema, 'payment_method')}
 
 `)
 }

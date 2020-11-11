@@ -1,17 +1,10 @@
 module.exports = (params) => {
 
-  return publish(params.tablePrefix + "balance_transactions", {
-  ...params.defaultConfig
+  return publish(params.tablePrefix + "balance_transaction", {
+  ...params.defaultConfig,
+  disabled: !params.usingPaymentMethod
   }).query(ctx => `
-  with balance_transaction_joined as (
-
-select *
-from ${ctx.ref(params.defaultConfig.schema, params.tablePrefix + 'balance_transaction_joined')} 
-
-)
-
-{% if var('using_payment_method', True) %}
-
+  
 select 
 ${params.usingPaymentMethod ? `
   *` : `

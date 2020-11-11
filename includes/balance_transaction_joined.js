@@ -25,7 +25,8 @@ select
   balance_transaction.description,
   case when balance_transaction.type = 'charge' then charge.amount end as customer_facing_amount, 
   case when balance_transaction.type = 'charge' then charge.currency end as customer_facing_currency,
-  {{ dbt_utils.dateadd('day', 1, 'balance_transaction.available_on') } as effective_at,
+  -- TODO: swap for a dataform/sql function
+  timestamp_add(balance_transaction.available_on, interval 1 day) as effective_at,
   coalesce(charge.customer_id, refund_charge.customer_id) as customer_id,
   charge.receipt_email,
   customer.description as customer_description,
@@ -52,12 +53,13 @@ left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tab
 left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'payment_intent') } as payment_intent on charge.payment_intent_id = payment_intent.payment_intent_id
 left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'card') } as card on charge.card_id = card.card_id
 left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'payout') } as payout on payout.balance_transaction_id = balance_transaction.balance_transaction_id
-left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'charge') } as charge as refund_charge on refund.charge_id = refund_charge.charge_id
 ${ctx.when(params.usingPaymentMethod, `
 left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'payment_method') } as payment_method on payment_intent.payment_method_id = payment_method.payment_method_id
 left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'payment_method_card') } as payment_method_card on payment_method_card.payment_method_id = payment_method.payment_method_id
 left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'refund') } as refund on refund.balance_transaction_id = balance_transaction.balance_transaction_id
 `)}
+left join ${ctx.ref(params.stagingSchema, params.stagingTablePrefix + params.tablePrefix + 'charge') } as refund_charge on refund.charge_id = refund_charge.charge_id
+
 
 `)
 }

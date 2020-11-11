@@ -28,7 +28,7 @@ select
   tax,
   tax_percent,
   total
-from ${ctx.ref(params.stripeSchema, 'invoice')}
+from ${ctx.ref(params.fivetranStripeSchema, 'invoice')}
 where not coalesce(is_deleted, false)
 
 `)

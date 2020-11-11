@@ -11,11 +11,11 @@ select
   active as is_active,
   amount,
   currency,
-  ${global.dataform.projectConfig.warehouse === "bigquery" ? `"interval"` : `interval`} as plan_interval
+  ${global.dataform.projectConfig.warehouse === "bigquery" ? `"interval"` : `interval`} as plan_interval,
   interval_count,
   nickname,
   product_id
-from ${ctx.ref(params.stripeSchema, 'plan')}
+from ${ctx.ref(params.fivetranStripeSchema, 'plan')}
 
 `)
 }

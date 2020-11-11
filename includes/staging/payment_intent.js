@@ -24,7 +24,7 @@ select
   receipt_email,
   statement_descriptor,
   status
-from ${ctx.ref(params.stripeSchema, 'payment_intent')}
+from ${ctx.ref(params.fivetranStripeSchema, 'payment_intent')}
 
 `)
 }

@@ -7,7 +7,7 @@ module.exports = (params) => {
   }).query(ctx => `
 
 select
-  ${sql.timestamps.truncate('week', sql.asTimestamp('date'))} as week,
+  ${sql.timestamps.truncate(sql.asTimestamp('date'), 'week')} as week,
   sum(total_sales) as total_sales,
   sum(total_refunds) as total_refunds,
   sum(total_adjustments) as total_adjustments,
