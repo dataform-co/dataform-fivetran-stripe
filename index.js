@@ -30,7 +30,7 @@ module.exports = (params) => {
 
   params = {
     // set defaults for parameters
-    fivetranStripeSchema: "fivetran_log",
+    fivetranStripeSchema: "fivetran_stripe",
     stagingTablePrefix: "stg_",
     usingSubscriptions: false,       
     usingInvoices: false,
