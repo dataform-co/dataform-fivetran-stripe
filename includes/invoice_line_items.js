@@ -23,6 +23,8 @@ select
   invoice_line_item.description as line_item_desc,
   invoice_line_item.amount as line_item_amount,
   invoice_line_item.quantity,
+  invoice_line_item.period_start,
+  invoice_line_item.period_end,
   charge.balance_transaction_id,
   charge.amount as charge_amount, 
   charge.status as charge_status,
