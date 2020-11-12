@@ -28,7 +28,8 @@ select
   charge.status as charge_status,
   charge.created_at as charge_created_at,
   customer.description as customer_description,
-  customer.email as customer_email
+  customer.email as customer_email,
+  customer.id as customer_id
   ${ctx.when(params.usingSubscriptions, `,
   subscription.subscription_id,
   subscription.billing as subcription_billing,
