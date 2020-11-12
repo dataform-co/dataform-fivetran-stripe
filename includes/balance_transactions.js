@@ -1,6 +1,6 @@
 module.exports = (params) => {
 
-  return publish(params.tablePrefix + "balance_transaction", {
+  return publish(params.tablePrefix + "balance_transactions", {
   ...params.defaultConfig,
   disabled: !params.usingPaymentMethod
   }).query(ctx => `

@@ -15,7 +15,7 @@ const fivetranStripeStgRefund = require("./includes/staging/refund");
 const fivetranStripeStgSubscription = require("./includes/staging/subscription");
 // outputs
 const fivetranStripeBalanceTransactionJoined = require("./includes/balance_transaction_joined");
-const fivetranStripeBalanceTransaction = require("./includes/balance_transaction");
+const fivetranStripeBalanceTransactions = require("./includes/balance_transactions");
 const fivetranStripeCustomerOverview = require("./includes/customer_overview");
 const fivetranStripeDailyOverview = require("./includes/daily_overview");
 const fivetranStripeIncompleteCharges = require("./includes/incomplete_charges");
@@ -155,7 +155,7 @@ module.exports = (params) => {
     refund: fivetranStripeStgRefund(params),
     subscription: fivetranStripeStgSubscription(params),
     balance_transaction_joined: fivetranStripeBalanceTransactionJoined(params),
-    balance_transaction: fivetranStripeBalanceTransaction(params),
+    balance_transactions: fivetranStripeBalanceTransactions(params),
     customer_overview: fivetranStripeCustomerOverview(params),
     daily_overview: fivetranStripeDailyOverview(params),
     incomplete_charges: fivetranStripeIncompleteCharges(params),
