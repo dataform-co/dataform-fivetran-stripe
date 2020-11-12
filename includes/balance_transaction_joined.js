@@ -1,3 +1,5 @@
+const sql = require("@dataform/sql")();
+
 module.exports = (params) => {
 
   return publish(params.tablePrefix + "balance_transaction_joined", {
@@ -25,8 +27,7 @@ select
   balance_transaction.description,
   case when balance_transaction.type = 'charge' then charge.amount end as customer_facing_amount, 
   case when balance_transaction.type = 'charge' then charge.currency end as customer_facing_currency,
-  -- TODO: swap for a dataform/sql function
-  timestamp_add(balance_transaction.available_on, interval 1 day) as effective_at,
+  ${sql.timestamps.add("balance_transaction.available_on", 1, "day")} as effective_at,
   coalesce(charge.customer_id, refund_charge.customer_id) as customer_id,
   charge.receipt_email,
   customer.description as customer_description,
