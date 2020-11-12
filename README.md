@@ -15,7 +15,7 @@ Create a new JS file in your `definitions/` folder and create the Fivetran Strip
 By default, the package will look for source data in the `fivetran_stripe` schema. If this is not where your Fivetran connector writes Stripe data to, you can override it when calling the package:
 
 ```js
-const fivetran_stripe = require("../");
+const fivetran_stripe = require("fivetran-stripe");
 
 const models = fivetran_stripe({
   fivetranStripeSchema: "stripe_fivetran",
