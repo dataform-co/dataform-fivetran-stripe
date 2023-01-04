@@ -1,7 +1,6 @@
 {
     "name": "dataform-fivetran-stripe",
     "dependencies": {
-        "@dataform/core": "1.15.5",
-        "@dataform/sql": "0.4.0"
+        "@dataform/core": "1.15.5"
     }
 }

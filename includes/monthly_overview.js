@@ -1,4 +1,4 @@
-const sql = require("@dataform/sql")();
+const sql = require("./sql")
 
 module.exports = (params) => {
  
@@ -13,7 +13,7 @@ from ${ctx.ref(params.defaultConfig.schema, params.tablePrefix + 'daily_overview
 )
 
 select
-  ${sql.timestamps.truncate(sql.asTimestamp('date'), 'month')} as month,
+  ${sql.timestampTruncate(sql.asTimestamp('date'), 'month')} as month,
   sum(total_sales) as total_sales,
   sum(total_refunds) as total_refunds,
   sum(total_adjustments) as total_adjustments,

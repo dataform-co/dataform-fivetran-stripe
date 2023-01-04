@@ -1,4 +1,4 @@
-const sql = require("@dataform/sql")();
+const sql = require("./sql")
 
 module.exports = (params) => {
 
@@ -27,7 +27,7 @@ select
   balance_transaction.description,
   case when balance_transaction.type = 'charge' then charge.amount end as customer_facing_amount, 
   case when balance_transaction.type = 'charge' then charge.currency end as customer_facing_currency,
-  ${sql.timestamps.add("balance_transaction.available_on", 1, "day")} as effective_at,
+  ${sql.timestampAdd("balance_transaction.available_on", 1, "day")} as effective_at,
   coalesce(charge.customer_id, refund_charge.customer_id) as customer_id,
   charge.receipt_email,
   customer.description as customer_description,
