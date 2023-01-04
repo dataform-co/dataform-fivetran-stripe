@@ -2,8 +2,6 @@
 
 BETA package for transforming Stripe datasets managed by a Fivetran connector. An ERD of the source data is [here](https://docs.google.com/presentation/d/1nqPBWtH_h_8iVjF9-GselWhIyfLH7dgEk7P92s66eEc/edit).
 
-TODO: description of what the packages does.
-
 ## Installation
 
 Add the package to your `package.json` file in your Dataform project. You can find the most up to package version on the [releases page](https://github.com/dataform-co/dataform-fivetran-stripe/releases).
@@ -29,13 +27,13 @@ const models = fivetran_stripe({
   defaultConfig: {
     schema: "fivetran_stripe_package",
     tags: ["fivetran_stripe"],
-    type: "table"
+    type: "table",
   },
 });
-
 ```
 
 ## Supported warehouses:
- - BigQuery
- - Snowflake
- - Redshift
+
+- BigQuery
+- Snowflake
+- Redshift
