@@ -1,4 +1,4 @@
-const sql = require("@dataform/sql")();
+const sql = require("./sql")
 
 module.exports = (params) => {
 
@@ -21,35 +21,35 @@ else 0 end) as total_sales_count,
   sum(case when type in ('payment_refund', 'refund') then 1
 else 0 end) as total_refund_count,   
   sum(case when type in ('charge', 'payment') 
-and ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+and ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
 then amount 
 else 0 end) as sales_this_month,
   sum(case when type in ('payment_refund', 'refund') 
-and ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+and ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
 then amount 
 else 0 end) as refunds_this_month,
-  sum(case when ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+  sum(case when ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
 then amount 
 else 0 end) as gross_transaction_amount_this_month,
-  sum(case when ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+  sum(case when ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
 then fee 
 else 0 end) as fees_this_month,
-  sum(case when ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+  sum(case when ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
 then net 
 else 0 end) as net_transaction_amount_this_month,
   sum(case when type in ('charge', 'payment') 
-and ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+and ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
 then 1 
 else 0 end) as sales_count_this_month,
   sum(case when type in ('payment_refund', 'refund') 
-and ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+and ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
 then 1 
 else 0 end) as refund_count_this_month,
   min(case when type in ('charge', 'payment') 
-  then ${sql.timestamps.truncate('created_at', 'day')}
+  then ${sql.timestampTruncate('created_at', 'day')}
   else null end) as first_sale_date,
   min(case when type in ('charge', 'payment') 
-  then ${sql.timestamps.truncate('created_at', 'day')}
+  then ${sql.timestampTruncate('created_at', 'day')}
   else null end) as most_recent_sale_date
 from  ${ctx.ref(params.defaultConfig.schema, params.tablePrefix + 'balance_transaction_joined')} 
 where type in ('payment', 'charge', 'payment_refund', 'refund')
@@ -61,10 +61,10 @@ select
   customer_id,
   count(*) as total_failed_charge_count,
   sum(amount) as total_failed_charge_amount,
-  sum(case when ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+  sum(case when ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
   then 1
   else 0 end) as failed_charge_count_this_month,
-  sum(case when ${sql.timestamps.truncate('created_at', 'month')}= ${sql.timestamps.truncate(sql.timestamps.currentUTC(), 'month')}
+  sum(case when ${sql.timestampTruncate('created_at', 'month')}= ${sql.timestampTruncate(sql.currentUTC(), 'month')}
   then amount
   else 0 end) as failed_charge_amount_this_month
 from ${ctx.ref(params.defaultConfig.schema, params.tablePrefix + 'incomplete_charges')} 
